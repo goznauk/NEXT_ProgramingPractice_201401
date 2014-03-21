@@ -42,8 +42,9 @@ namespace next {
 			c1.initCircle(1);
 			c2.initCircle(2);
 
-			Console.WriteLine("{0}, {1}, {2}", 
-					c1.getx(), c2.gety(), c1.getr());
+//			Just for Check it is working
+//			Console.WriteLine("{0}, {1}, {2}", 
+//					c1.getx(), c2.gety(), c1.getr());
 		
 			int dx = c1.getx() - c2.getx();
 			int dy = c1.gety() - c2.gety();
