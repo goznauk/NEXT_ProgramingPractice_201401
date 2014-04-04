@@ -7,7 +7,6 @@ class lab1 {
 		Console.WriteLine("Input the number : ");
 //		tmpstr = Console.ReadLine();
 //		num = Convert.ToInt32(tmpstr);
-
 		num = Int32.Parse(Console.ReadLine());
 
 		for(i=num;i>0;i--) {
