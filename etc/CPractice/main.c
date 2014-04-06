@@ -55,8 +55,8 @@ int getType(char c) {
 	}
 }
 
-STACK* initStack(STACK *ps) {
-	ps = (STACK*)malloc(sizeof(STACK));
+STACK* initStack() {
+  STACK* ps = malloc(sizeof(STACK));
 	ps->size = 0;
 	return ps;
 }
@@ -89,8 +89,7 @@ ITEM getTop(STACK *ps)     { return ps->items[(ps->size)-1]; }
 char getTopChar(STACK *ps) { return getTop(ps).ch; }
 
 int main() {
-	STACK *ps;
-	ps = initStack(ps);
+	STACK *ps = initStack();
 
 	char mStr[INPUTSIZE];
 
