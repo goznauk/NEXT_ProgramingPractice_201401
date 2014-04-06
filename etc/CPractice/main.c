@@ -3,12 +3,14 @@
 #include <string.h>
 #include <stdbool.h>
 
-#define STACKSIZE 100
-#define INPUTSIZE 200
-#define OPENER 2
-#define CLOSER 3
-#define LINE "|--------|-------|------|"
-#define LINEN "|--------|-------|------|\n"
+
+
+const int STACKSIZE = 100;
+const int INPUTSIZE = 200;
+const int OPENER = 2;
+const int CLOSER = 3;
+const char LINE[]  = "|--------|-------|------|";
+const char LINEN[] = "|--------|-------|------|\n";
 
 typedef struct {
 	int id;
@@ -19,6 +21,8 @@ typedef struct {
 	int size;
 	ITEM items[STACKSIZE];
 } STACK;
+
+
 
 bool isPair(char open, char close) {
 	switch(open) {
@@ -94,7 +98,8 @@ int main() {
 	char mStr[INPUTSIZE];
 
 	printf("Input : ");
-	scanf("%s", &mStr);
+  fgets(mStr, INPUTSIZE, stdin);
+  strtok(mStr, "\n");
 
 	printf("=====    RESULTS    =====\n");
 	printf("┌-----------------------┐\n");
