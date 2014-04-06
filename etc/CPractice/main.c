@@ -22,44 +22,19 @@ typedef struct {
 
 bool isPair(char open, char close) {
 	switch(open) {
-		case '(' :
-			if(close==')') return true;
-			return false;
-			break;
-
-		case '{' :
-			if(close=='}') return true;
-			return false;
-			break;
-
-		case '[' :
-			if(close==']') return true;
-			return false;
-			break;
-
-		default :
-			return false;
-			break;
+		case '(': return close == ')';
+		case '{': return close == '}';
+		case '[': return close == ']';
+		default:  return false;
 	}
 }
 
 char getPair(char c) {
 	switch(c) {
-		case '(' :
-			return ')';
-			break;
-
-		case '{' :
-			return '}';
-			break;
-
-		case '[' :
-			return ']';
-			break;
-
-		default :
-			return 'X';
-			break;
+		case '(': return ')';
+		case '{': return '}';
+		case '[': return ']';
+		default: return 'X';
 	}
 }
 
@@ -69,17 +44,14 @@ int getType(char c) {
 		case '{' :
 		case '[' :
 			return OPENER;
-			break;
 
 		case ')' :
 		case '}' :
 		case ']' :
 			return CLOSER;
-			break;
 
 		default :
 			return 0;
-			break;
 	}
 }
 
@@ -89,15 +61,8 @@ STACK* initStack(STACK *ps) {
 	return ps;
 }
 
-bool isStackEmpty(STACK *ps) {
-	if(ps->size == 0) return true;
-	return false;
-}
-
-bool isStackFull(STACK *ps) {
-	if(ps->size==STACKSIZE) return true;
-	return false;
-}
+bool isStackEmpty(STACK *ps) { return ps->size == 0; }
+bool isStackFull (STACK *ps) { return ps->size == STACKSIZE; }
 
 void push(STACK *ps, ITEM x) {
 	if(isStackFull(ps)) {
@@ -120,13 +85,8 @@ ITEM pop(STACK *ps) {
 	return ps->items[ps->size];
 }
 
-ITEM getTop(STACK *ps) {
-	return ps->items[(ps->size)-1];
-}
-
-char getTopChar(STACK *ps) {
-	return ps->items[(ps->size)-1].ch;
-}
+ITEM getTop(STACK *ps)     { return ps->items[(ps->size)-1]; }
+char getTopChar(STACK *ps) { return getTop(ps).ch; }
 
 int main() {
 	STACK *ps;
