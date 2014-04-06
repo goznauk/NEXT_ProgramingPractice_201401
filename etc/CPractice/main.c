@@ -1,10 +1,10 @@
-#include<stdio.h>
-#include<stdlib.h>
-#include<string.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdbool.h>
+
 #define STACKSIZE 100
 #define INPUTSIZE 200
-#define FALSE 0
-#define TRUE 1
 #define OPENER 2
 #define CLOSER 3
 #define LINE "|--------|-------|------|"
@@ -20,25 +20,25 @@ typedef struct {
 	ITEM items[STACKSIZE];
 } STACK;
 
-int isPair(char open, char close) {
+bool isPair(char open, char close) {
 	switch(open) {
 		case '(' :
-			if(close==')') return TRUE;
-			return FALSE;
+			if(close==')') return true;
+			return false;
 			break;
 
 		case '{' :
-			if(close=='}') return TRUE;
-			return FALSE;
+			if(close=='}') return true;
+			return false;
 			break;
 
 		case '[' :
-			if(close==']') return TRUE;
-			return FALSE;
+			if(close==']') return true;
+			return false;
 			break;
 
 		default :
-			return FALSE;
+			return false;
 			break;
 	}
 }
@@ -78,7 +78,7 @@ int getType(char c) {
 			break;
 
 		default :
-			return FALSE;
+			return 0;
 			break;
 	}
 }
@@ -89,14 +89,14 @@ STACK* initStack(STACK *ps) {
 	return ps;
 }
 
-int isStackEmpty(STACK *ps) {
-	if(ps->size == 0) return TRUE;
-	return FALSE;
+bool isStackEmpty(STACK *ps) {
+	if(ps->size == 0) return true;
+	return false;
 }
 
-int isStackFull(STACK *ps) {
-	if(ps->size==STACKSIZE) return TRUE;
-	return FALSE;
+bool isStackFull(STACK *ps) {
+	if(ps->size==STACKSIZE) return true;
+	return false;
 }
 
 void push(STACK *ps, ITEM x) {
@@ -146,7 +146,7 @@ int main() {
 	for(int i=0;i<strlen(mStr);i++) {
 		if(!getType(mStr[i])) {
 			fprintf(stderr, "%s\tError : Unexpected Input - (at %d) cahracter %c\n%s\tPlease Input only (){}[]\n", LINE, i+1, mStr[i], LINE);
-			return FALSE;
+			return 1;
 		}
 		else if(getType(mStr[i])==OPENER) {
 			ITEM mItem;
@@ -160,14 +160,14 @@ int main() {
 			}
 			else {
 				fprintf(stderr, "%s\tError : Uncorrect Input\n%s\t(at %d) character %c should be replaced\n", LINE, LINE, i+1, mStr[i]);
-				return FALSE;
+				return 1;
 			}
 		}
 	}
 
 	if(ps->size!=0) {
 		fprintf(stderr, "%s\tError : Unexpected End\n%s\t%c has to be closed (started at %d)\n", LINE, LINE, getTopChar(ps), getTop(ps).id);
-		return FALSE;
+		return 1;
 	}
 
 	printf("└-----------------------┘\n");
