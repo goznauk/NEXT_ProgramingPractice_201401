@@ -13,6 +13,7 @@ const int ERROR_STACK_UNDERFLOW = -2;
 const int ERROR_UNEXPECTED_INPUT = -3;
 const int ERROR_UNCORRECT_INPUT = -4;
 const int ERROR_UNEXPECTED_END = -5;
+const char OUTMSG[] = "|  %s\t |  %03d  |  %c%c  |\n";
 const char LINE[]  = "|--------|-------|------|";
 const char LINEN[] = "|--------|-------|------|\n";
 
@@ -90,15 +91,15 @@ void endWithError(STACK *ps, int errorCode) {
 		break;
 
 	case ERROR_UNEXPECTED_INPUT :
-      fprintf(stderr, "%s\tError : Unexpected Input - (at %d) cahracter %c\n%s\tPlease Input only (){}[]\n", LINE, i+1, mStr[i], LINE);
+      fprintf(stderr, "%s\tError :\tUnexpected Input - (at %d) character %c\n%s\t\tPlease Input only (){}[]\n", LINE, i+1, mStr[i], LINE);
 		break;
 
 	case ERROR_UNCORRECT_INPUT :
-        fprintf(stderr, "%s\tError : Uncorrect Input\n%s\t(at %d) character %c should be replaced\n", LINE, LINE, i+1, mStr[i]);
+        fprintf(stderr, "%s\tError :\tUncorrect Input\n%s\t\t(at %d) character %c should be replaced\n", LINE, LINE, i+1, mStr[i]);
 		break;
 			
 	case ERROR_UNEXPECTED_END :
-    fprintf(stderr, "%s\tError : Unexpected End\n%s\t%c has to be closed (started at %d)\n", LINE, LINE, getTopChar(ps), getTop(ps).id);
+    fprintf(stderr, "%s\tError :\tUnexpected End\n%s\t\t%c has to be closed (started at %d)\n", LINE, LINE, getTopChar(ps), getTop(ps).id);
 		break;
 	}
 
@@ -113,7 +114,7 @@ void push(STACK *ps, ITEM x) {
     //return;
   }
   ps->items[ps->size] = x;
-  printf("|  push\t |  %03d  |  %c%c  |\n", ps->items[ps->size].id, ps->items[ps->size].ch, getPair(ps->items[ps->size].ch));
+  printf(OUTMSG, "Push", ps->items[ps->size].id, ps->items[ps->size].ch, getPair(ps->items[ps->size].ch));
   ps->size++;
 }
 
@@ -125,7 +126,7 @@ ITEM pop(STACK *ps) {
     //return emptyItem;
   }
   ps->size--;
-  printf("|  pop\t |  %03d  |  %c%c  |\n", ps->items[ps->size].id, ps->items[ps->size].ch, getPair(ps->items[ps->size].ch));
+  printf(OUTMSG, "Pop", ps->items[ps->size].id, ps->items[ps->size].ch, getPair(ps->items[ps->size].ch));
   return ps->items[ps->size];
 }
 
