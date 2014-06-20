@@ -1,0 +1,17 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+tools:context="com.nhnnext.goznauk.phonetracker.app.MainActivity" >
+
+<item
+    android:id="@+id/action_refresh"
+    android:orderInCategory="100"
+    android:title="@string/action_refresh"
+    app:showAsAction="never"/>
+<item
+    android:id="@+id/action_clear_log"
+    android:orderInCategory="100"
+    android:title="@string/action_clear_log"
+    app:showAsAction="never"/>
+
+</menu>
