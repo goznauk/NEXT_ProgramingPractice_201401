@@ -24,7 +24,7 @@ namespace Lab4 {
       
       cursorPos = Console.CursorTop - 1;
       for (int i = 1; i <= 30; i++) {
-        Thread.Sleep(10 + i * 20);
+        Thread.Sleep(10 + i * 10);
         Console.SetCursorPosition(0, cursorPos);
         Console.Write("{0:d3}%", (i / 3) * 10);
         Console.SetCursorPosition(4 + i, cursorPos);
@@ -48,7 +48,7 @@ namespace Lab4 {
 
       cursorPos = Console.CursorTop - 1;
       for (int i = 1; i <= 30; i++) {
-        Thread.Sleep(400 - i * 10);
+        Thread.Sleep(200 - i * 5);
         Console.SetCursorPosition(0, cursorPos);
         Console.Write("{0:d3}%", (i / 3) * 10);
         Console.SetCursorPosition(4 + i, cursorPos);
@@ -62,8 +62,23 @@ namespace Lab4 {
         Console.Write("{0} ", i);
       }
       Console.WriteLine();
-      Console.ReadKey();
+      Console.WriteLine();
+      Console.WriteLine();
+
+      Console.WriteLine("Your Lotto Number : ");
+      // Lotto~
+      List<int> lottoList = new List<int>();
+      for (int i = 1; i <= 45; i++) {
+        lottoList.Add(i);
+      }
+      shuffle(ref lottoList);
+      for (int i = 0; i < 6; i++) {
+        Console.Write("{0} ", lottoList[i]);
+      }
+      Console.WriteLine();
+      Console.Read();
     }
+
 
     static void swapIntList(ref List<int> list, int pos1, int pos2) {
       int tmp1 = list.ElementAt(pos1);
@@ -83,11 +98,11 @@ namespace Lab4 {
 
       for (; ; ) {
         t++;
-        i = r.Next(0, 10);
-        j = r.Next(0, 10);
+        i = r.Next(0, list.Count);
+        j = r.Next(0, list.Count);
 
         swapIntList(ref list, i, j);
-        if (t > 50) { break; }
+        if (t > 1000) { break; }
       }
     }
   }
