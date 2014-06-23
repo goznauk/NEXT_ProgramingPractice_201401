@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 namespace Lab4 {
   class Program {
     static void Main(string[] args) {
+      int cursorPos;
       List<int> mList = new List<int>();
       Console.Write("Original List : ");
       for (int i = 1; i <= 10; i++) { mList.Add(i); }
@@ -15,19 +16,21 @@ namespace Lab4 {
         Console.Write("{0} ", i);
       }
       Console.WriteLine();
-
+      Console.WriteLine();
 
       Console.WriteLine("EveryBody Shuffling");
-      Console.WriteLine("000% ----------");
+      Console.WriteLine("000% ------------------------------");
       Thread.Sleep(500);
-      for (int i = 1; i <= 10; i++) {
-        Thread.Sleep(100+i*30);
-        Console.SetCursorPosition(0, 2);
-        Console.Write("{0:d3}%", i * 10);
-        Console.SetCursorPosition(4 + i, 2);
+      
+      cursorPos = Console.CursorTop - 1;
+      for (int i = 1; i <= 30; i++) {
+        Thread.Sleep(10 + i * 20);
+        Console.SetCursorPosition(0, cursorPos);
+        Console.Write("{0:d3}%", (i / 3) * 10);
+        Console.SetCursorPosition(4 + i, cursorPos);
         Console.Write('#');
       }
-      Console.SetCursorPosition(0,3);
+      Console.WriteLine();
 
       Console.Write("Shuffled : ");
       shuffle(ref mList);
@@ -36,22 +39,22 @@ namespace Lab4 {
       }
       Console.WriteLine();
       Console.WriteLine();
-      Console.WriteLine();
-
 
       Thread.Sleep(500);
 
       Console.WriteLine("EveryBody Shuffling");
-      Console.WriteLine("000% ----------");
+      Console.WriteLine("000% ------------------------------");
       Thread.Sleep(500);
-      for (int i = 1; i <= 10; i++) {
-        Thread.Sleep(400-i*35);
-        Console.SetCursorPosition(0, 7);
-        Console.Write("{0:d3}%", i * 10);
-        Console.SetCursorPosition(4 + i, 7);
+
+      cursorPos = Console.CursorTop - 1;
+      for (int i = 1; i <= 30; i++) {
+        Thread.Sleep(400 - i * 10);
+        Console.SetCursorPosition(0, cursorPos);
+        Console.Write("{0:d3}%", (i / 3) * 10);
+        Console.SetCursorPosition(4 + i, cursorPos);
         Console.Write('#');
       }
-      Console.SetCursorPosition(0, 8);
+      Console.WriteLine();
 
       Console.Write("Shuffled : ");
       shuffle(ref mList);
